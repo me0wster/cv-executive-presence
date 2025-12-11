@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Stephanie Robesky - Product Manager Portfolio - Interactive Terminal Experience" />
+    <meta name="keywords" content="product manager, fintech, nerdwallet, stephanie robesky, portfolio" />
+    <meta name="author" content="Stephanie Robesky" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="nerdgirl:~$ Stephanie Robesky - Product Management Professional" />
+    <meta property="og:description" content="Interactive terminal portfolio - Type 'help' to explore my experience" />
+    <meta property="og:url" content="https://nerdgirl.com" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>nerdgirl:~$ Stephanie Robesky</title>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/f5bc83d4e9.js" crossorigin="anonymous"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+        background-color: #0a0e14;
+        color: #00ff41;
+        overflow: hidden;
+      }
+
+      #root {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-BM4Oe_7o.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DNe8CHcY.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
