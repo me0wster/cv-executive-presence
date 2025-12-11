@@ -26,7 +26,7 @@ export function ContactSection() {
             </div>
             <div className="flex gap-3">
               <span className="text-[#7f849c] w-20">WEBSITE:</span>
-              <span className="text-[#89b4fa]">me0wster.com</span>
+              <span className="text-[#89b4fa]">timothychinkl.dev</span>
             </div>
           </div>
         </div>
