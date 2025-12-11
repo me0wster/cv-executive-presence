@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import { AboutSection } from "./sections/about";
 import { ContactSection } from "./sections/contact";
@@ -34,6 +34,71 @@ export function Terminal() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const idCounter = useRef(0);
 
+  const handleCommand = useCallback((cmd: string) => {
+    const trimmedCmd = cmd.trim().toLowerCase();
+
+    if (trimmedCmd === "clear") {
+      setHistory([]);
+      setInput("");
+      return;
+    }
+
+    if (trimmedCmd === "") {
+      setHistory((prev) => [
+        ...prev,
+        {
+          id: idCounter.current++,
+          command: cmd,
+          output: null,
+        },
+      ]);
+      setInput("");
+      return;
+    }
+
+    let output: React.ReactNode;
+    switch (trimmedCmd) {
+      case "about":
+        output = <AboutSection />;
+        break;
+      case "experience":
+        output = <ExperienceSection />;
+        break;
+      case "education":
+        output = <EducationSection />;
+        break;
+      case "skills":
+        output = <SkillsSection />;
+        break;
+      case "projects":
+        output = <ProjectsSection />;
+        break;
+      case "contact":
+        output = <ContactSection />;
+        break;
+      case "help":
+        output = <HelpSection onCommand={handleCommand} />;
+        break;
+      default:
+        output = (
+          <div className="text-[#f38ba8] text-sm">
+            command not found. Type 'help' for available commands.
+          </div>
+        );
+    }
+
+    setHistory((prev) => [
+      ...prev,
+      {
+        id: idCounter.current++,
+        command: cmd,
+        output,
+      },
+    ]);
+
+    setInput("");
+  }, []);
+
   useEffect(() => {
     // Auto-run welcome on mount
     setTimeout(() => {
@@ -50,73 +115,12 @@ export function Terminal() {
         },
       ]);
     }, 300);
-  }, []);
+  }, [handleCommand]);
 
   useEffect(() => {
     // Scroll to bottom when history changes
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
-
-  function getOutputForCommand(cmd: string): React.ReactNode {
-    switch (cmd) {
-      case "about":
-        return <AboutSection />;
-      case "experience":
-        return <ExperienceSection />;
-      case "education":
-        return <EducationSection />;
-      case "skills":
-        return <SkillsSection />;
-      case "projects":
-        return <ProjectsSection />;
-      case "contact":
-        return <ContactSection />;
-      case "help":
-        return <HelpSection onCommand={handleCommand} />;
-      default:
-        return (
-          <div className="text-[#f38ba8] text-sm">
-            command not found. Type 'help' for available commands.
-          </div>
-        );
-    }
-  }
-
-  function handleCommand(cmd: string) {
-    const trimmedCmd = cmd.trim().toLowerCase();
-
-    if (trimmedCmd === "clear") {
-      setHistory([]);
-      setInput("");
-      return;
-    }
-
-    if (trimmedCmd === "") {
-      setHistory([
-        ...history,
-        {
-          id: idCounter.current++,
-          command: cmd,
-          output: null,
-        },
-      ]);
-      setInput("");
-      return;
-    }
-
-    const output = getOutputForCommand(trimmedCmd);
-
-    setHistory([
-      ...history,
-      {
-        id: idCounter.current++,
-        command: cmd,
-        output,
-      },
-    ]);
-
-    setInput("");
-  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -189,8 +193,12 @@ function HelpSection({ onCommand }: { onCommand: (cmd: string) => void }) {
         <button
           key={cmd.cmd}
           type="button"
-          onClick={() => onCommand(cmd.cmd)}
-          className="flex w-full items-center gap-4 text-left text-[#bac2de] hover:text-[#f9e2af] transition-colors"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onCommand(cmd.cmd);
+          }}
+          className="flex w-full items-center gap-4 text-left text-[#bac2de] hover:text-[#f9e2af] transition-colors cursor-pointer"
         >
           <span className="text-[#a6e3a1] w-24 underline decoration-dotted">
             {cmd.cmd}
