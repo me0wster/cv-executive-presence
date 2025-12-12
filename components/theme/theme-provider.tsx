@@ -49,12 +49,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     const fromDataset = document.documentElement.dataset.theme;
     if (isCatppuccinTheme(fromDataset ?? null)) {
-      return fromDataset;
+      return fromDataset as CatppuccinTheme;
     }
 
     const stored = localStorage.getItem(THEME_STORAGE_KEY);
     if (isCatppuccinTheme(stored)) {
-      return stored;
+      return stored as CatppuccinTheme;
     }
 
     return "mocha";
