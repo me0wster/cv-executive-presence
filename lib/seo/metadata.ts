@@ -101,8 +101,8 @@ export const openGraphMetadata: OpenGraphMetadata = {
   images: [
     {
       url: "https://timothychinkl.dev/og-image.png",
-      width: 3024,
-      height: 4032,
+      width: 1200,
+      height: 630,
       alt: "Timothy Chin - Staff Engineer & Technical Leader",
       type: "image/jpeg",
     },
