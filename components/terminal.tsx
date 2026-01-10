@@ -5,7 +5,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { AboutSection } from "./sections/about";
 import { ContactSection } from "./sections/contact";
-import { EducationSection } from "./sections/education";
 import { ExperienceSection } from "./sections/experience";
 import { HelpSection } from "./sections/help";
 import { ProjectsSection } from "./sections/projects";
@@ -61,9 +60,6 @@ export function Terminal() {
         break;
       case "experience":
         output = <ExperienceSection />;
-        break;
-      case "education":
-        output = <EducationSection />;
         break;
       case "skills":
         output = <SkillsSection />;

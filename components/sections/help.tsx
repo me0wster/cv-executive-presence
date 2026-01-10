@@ -1,7 +1,6 @@
 const commands = [
   { cmd: "about", desc: "Display personal information" },
   { cmd: "experience", desc: "Show work experience" },
-  { cmd: "education", desc: "Show education history" },
   { cmd: "skills", desc: "List technical skills" },
   { cmd: "projects", desc: "Display notable projects" },
   { cmd: "contact", desc: "Show contact information" },
