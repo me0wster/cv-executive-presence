@@ -14,7 +14,11 @@ const shortcuts = [
   { key: "↑ / ↓", desc: "Navigate command history" },
 ];
 
-export function HelpSection({ onCommand }: { onCommand: (cmd: string) => void }) {
+export function HelpSection({
+  onCommand,
+}: {
+  onCommand: (cmd: string) => void;
+}) {
   return (
     <div className="space-y-4 text-sm">
       <div>
