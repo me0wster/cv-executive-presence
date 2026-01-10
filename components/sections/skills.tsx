@@ -1,79 +1,87 @@
-import { SectionFooter, SectionHeader } from "./section-wrapper";
+"use client";
 
+import { skillCategories } from "@/lib/data/skills";
+import { SectionContainer } from "@/components/ui/section-container";
+import { EntranceAnimation } from "@/components/ui/entrance-animation";
+import { cn } from "@/lib/utils";
+
+/**
+ * Skills Section - Categorized skill display
+ * Tag-based layout with proficiency indicators
+ */
 export function SkillsSection() {
-  const skillCategories = [
-    {
-      category: "CLOUD & DEVOPS",
-      skills: [
-        "AWS (EC2, EKS, ECS, Lambda, S3, CloudWatch, VPC)",
-        "Kubernetes (multi-cluster HA architectures, cost optimization, network topology)",
-        "Docker",
-        "Terraform",
-        "CloudFormation",
-        "Ansible",
-        "GitLab CI/CD",
-        "GitHub Actions",
-        "GitOps workflows",
-      ],
-    },
-    {
-      category: "OBSERVABILITY & MONITORING",
-      skills: [
-        "OpenTelemetry (large-scale log/metrics ingestion, distributed tracing, observability)",
-        "Alert routing and noise reduction",
-        "On-call system design (SRE)",
-        "Prometheus",
-        "Grafana",
-        "Signoz",
-      ],
-    },
-    {
-      category: "BACKEND & SERVICES",
-      skills: [
-        "Node (Javascript/Typescript)",
-        "Python (automation, backend services)",
-        "Java",
-        "RESTful APIs",
-        "Microservices architecture",
-        "PostgreSQL",
-        "MySQL",
-        "Redis",
-        "DynamoDB",
-      ],
-    },
-    {
-      category: "PLATFORM ENGINEERING & DEVEX",
-      skills: [
-        "Backstage (Certified Associate) (Exam Creator)",
-        "Internal Developer Platforms (IDP)",
-        "Self-service infrastructure",
-        "Developer experience optimization",
-        "CI/CD pipeline optimization (5x improvement)",
-      ],
-    },
-  ];
+  const proficiencyStyles = {
+    expert: "bg-primary text-foreground border-primary font-medium",
+    proficient: "bg-muted text-foreground border-border",
+    familiar:
+      "bg-transparent text-muted-foreground border-dashed border-border",
+  };
 
   return (
-    <div className="space-y-3 text-sm">
-      <SectionHeader title="SKILLS" />
-      <div className="pl-2 space-y-4">
-        {skillCategories.map((cat, idx) => (
-          <div key={idx}>
-            <div className="text-(--terminal-green) mb-2">{cat.category}:</div>
-            <div className="pl-4 flex flex-wrap gap-2">
-              {cat.skills.map((skill, i) => (
-                <span
-                  key={i}
-                  className="text-foreground border border-border bg-secondary px-2 py-1 text-xs rounded-sm"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
+    <SectionContainer
+      id="skills"
+      title="Skills"
+      subtitle="Expertise"
+      tagline="Technologies and methodologies I work with"
+    >
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {skillCategories
+          .sort((a, b) => a.order - b.order)
+          .map((category, index) => (
+            <EntranceAnimation
+              key={category.id}
+              delay={
+                (Math.min(index, 5) * 100) as 0 | 100 | 200 | 300 | 400 | 500
+              }
+            >
+              <div className="space-y-4">
+                {/* Category Name */}
+                <h3 className="font-serif text-xl text-foreground border-b border-border pb-2">
+                  {category.name}
+                </h3>
+
+                {/* Skills */}
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill.name}
+                      className={cn(
+                        "px-3 py-1.5 text-sm rounded-full border transition-colors duration-200",
+                        proficiencyStyles[skill.proficiency || "familiar"]
+                      )}
+                      title={`${skill.proficiency || "familiar"}`}
+                    >
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </EntranceAnimation>
+          ))}
       </div>
-      <SectionFooter />
-    </div>
+
+      {/* Legend */}
+      <EntranceAnimation delay={500}>
+        <div className="mt-12 pt-8 border-t border-border">
+          <p className="text-sm text-muted-foreground mb-4">
+            Proficiency levels:
+          </p>
+          <div className="flex flex-wrap gap-6">
+            <span className="flex items-center gap-2 text-sm">
+              <span className="w-4 h-4 rounded-full bg-primary border border-primary" />
+              Expert
+            </span>
+            <span className="flex items-center gap-2 text-sm">
+              <span className="w-4 h-4 rounded-full bg-muted border border-border" />
+              Proficient
+            </span>
+            <span className="flex items-center gap-2 text-sm">
+              <span className="w-4 h-4 rounded-full bg-transparent border border-dashed border-border" />
+              Familiar
+            </span>
+          </div>
+        </div>
+      </EntranceAnimation>
+    </SectionContainer>
   );
 }

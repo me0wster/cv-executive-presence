@@ -1,50 +1,50 @@
-import { SectionFooter, SectionHeader } from "./section-wrapper";
+"use client";
 
+import { aboutContent } from "@/lib/data/person";
+import { SectionContainer } from "@/components/ui/section-container";
+import { EntranceAnimation } from "@/components/ui/entrance-animation";
+import { DropCap } from "@/components/ui/drop-cap";
+
+/**
+ * About Section - Professional bio and value proposition
+ * Two-column layout with drop cap styling
+ */
 export function AboutSection() {
   return (
-    <div className="space-y-3 text-sm">
-      <SectionHeader title="ABOUT" />
-      <div className="space-y-3 text-foreground pl-2">
-        <div>
-          <div className="text-(--terminal-green) mb-1">NAME:</div>
-          <div className="pl-4">Your Name</div>
+    <SectionContainer
+      id="about"
+      title={aboutContent.headline}
+      subtitle="Who I Am"
+      tagline={aboutContent.tagline}
+    >
+      <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        {/* Left Column - Main content */}
+        <div className="space-y-6">
+          <EntranceAnimation>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              {aboutContent.subheadline}
+            </p>
+          </EntranceAnimation>
+
+          <EntranceAnimation delay={100}>
+            <DropCap className="text-foreground/90 leading-relaxed">
+              {aboutContent.paragraphs[0]}
+            </DropCap>
+          </EntranceAnimation>
         </div>
-        <div>
-          <div className="text-(--terminal-green) mb-1">TITLE:</div>
-          <div className="pl-4">
-            TECHNICAL LEADER | Staff Engineer | Architecting DevEx & DevOps
-            AI-Powered Platform
-          </div>
-        </div>
-        <div>
-          <div className="text-(--terminal-green) mb-1">BIO:</div>
-          <div className="pl-4 text-muted-foreground leading-relaxed">
-            Innovative engineering leader with 12+ years of experience across
-            DevOps, platform engineering, and developer experience (DevEx). I
-            specialize in architecting scalable, cost-effective, multi-cloud
-            platforms while building internal products that streamline developer
-            workflows and boost team productivity. As a technical leader, I lead
-            cross-functional teams and design DevEx-focused solutions that
-            reduce friction, increase velocity, and align engineering outcomes
-            with business goals.
-            <br />
-            <br />
-            Passionate about AI, I integrate cutting-edge tools and frameworks
-            into daily workflows to optimize coding, reporting, and technical
-            decision-making. I am also spearheading our AI initiatives;
-            architecting and implementing our agentic, generative AI solution
-            into Venue.sh that transforms our developer portal into an
-            intelligent, conversational interface. I bring a strategic mindset,
-            hands-on technical leadership, and a proven track record of
-            delivering impact across complex engineering ecosystems.
-          </div>
-        </div>
-        <div>
-          <div className="text-(--terminal-green) mb-1">LOCATION:</div>
-          <div className="pl-4">New York</div>
+
+        {/* Right Column - Additional paragraphs */}
+        <div className="space-y-6">
+          {aboutContent.paragraphs.slice(1).map((paragraph, index) => (
+            <EntranceAnimation
+              key={index}
+              delay={((index + 2) * 100) as 0 | 100 | 200 | 300 | 400 | 500}
+            >
+              <p className="text-foreground/90 leading-relaxed">{paragraph}</p>
+            </EntranceAnimation>
+          ))}
         </div>
       </div>
-      <SectionFooter />
-    </div>
+    </SectionContainer>
   );
 }

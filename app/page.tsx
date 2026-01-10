@@ -1,25 +1,21 @@
-"use client";
-
-import { useState, useEffect } from "react";
-
-import { Terminal } from "@/components/terminal";
-import { TerminalHeader } from "@/components/terminal-header";
+import { HeroSection } from "@/components/sections/hero";
+import { AboutSection } from "@/components/sections/about";
+import { ExperienceSection } from "@/components/sections/experience";
+import { SkillsSection } from "@/components/sections/skills";
+import { ProjectsSection } from "@/components/sections/projects";
+import { ContactSection } from "@/components/sections/contact";
+import { Navigation } from "@/components/ui/navigation";
 
 export default function Page() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
   return (
-    <main className="h-screen bg-background text-foreground p-4 sm:p-8 flex flex-col">
-      <div className="w-full flex flex-col flex-1 min-h-0">
-        <TerminalHeader />
-        <Terminal />
-      </div>
+    <main className="min-h-screen bg-background text-foreground lg:pr-24">
+      <Navigation />
+      <HeroSection />
+      <AboutSection />
+      <ExperienceSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
     </main>
   );
 }

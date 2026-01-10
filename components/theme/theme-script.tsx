@@ -1,23 +1,25 @@
-import Script from "next/script";
-
-const THEME_STORAGE_KEY = "ctp-theme";
+/**
+ * Theme Script - Prevents flash of wrong theme on page load
+ * Must be rendered in <head> before any content
+ */
 
 const themeScript = `
-(() => {
-  try {
-    const stored = localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)});
-    const theme = stored || "mocha";
-    document.documentElement.dataset.theme = theme;
-  } catch {
-    // ignore
+(function() {
+  const STORAGE_KEY = 'theme-preference';
+  
+  function getThemePreference() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === 'light' || stored === 'dark') {
+      return stored;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
+  
+  const theme = getThemePreference();
+  document.documentElement.classList.toggle('dark', theme === 'dark');
 })();
 `;
 
 export function ThemeScript() {
-  return (
-    <Script id="ctp-theme" strategy="beforeInteractive">
-      {themeScript}
-    </Script>
-  );
+  return <script dangerouslySetInnerHTML={{ __html: themeScript }} />;
 }

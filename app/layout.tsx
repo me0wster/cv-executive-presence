@@ -1,48 +1,68 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { Playfair_Display, Inter } from "next/font/google";
 import type React from "react";
 
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ThemeScript } from "@/components/theme/theme-script";
-import { siteMetadata, openGraphMetadata, twitterMetadata } from "@/lib/seo/metadata";
-import { generatePersonJsonLd } from "@/lib/seo/structured-data";
 
 import "./globals.css";
 
+// Serif font for headings
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+// Sans-serif font for body text
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
-  metadataBase: new URL(siteMetadata.url),
-  title: siteMetadata.title,
-  description: siteMetadata.description,
+  metadataBase: new URL("https://timothychin.com"),
+  title: "Timothy Chin | Software Engineer",
+  description:
+    "Senior Software Engineer specializing in building elegant solutions to complex problems. Expert in React, TypeScript, Node.js, and cloud architecture.",
   icons: {
     icon: "/favicon.svg",
   },
   alternates: {
-    canonical: siteMetadata.url,
+    canonical: "https://timothychin.com",
   },
   openGraph: {
-    title: openGraphMetadata.title,
-    description: openGraphMetadata.description,
-    url: openGraphMetadata.url,
-    siteName: openGraphMetadata.siteName,
-    type: openGraphMetadata.type,
-    locale: openGraphMetadata.locale,
-    images: openGraphMetadata.images.map(img => ({
-      url: img.url,
-      width: img.width,
-      height: img.height,
-      alt: img.alt,
-      type: img.type,
-    })),
+    title: "Timothy Chin | Software Engineer",
+    description:
+      "Senior Software Engineer specializing in building elegant solutions to complex problems.",
+    url: "https://timothychin.com",
+    siteName: "Timothy Chin",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Timothy Chin - Software Engineer",
+      },
+    ],
   },
   twitter: {
-    card: twitterMetadata.card,
-    title: twitterMetadata.title,
-    description: twitterMetadata.description,
-    images: twitterMetadata.images,
+    card: "summary_large_image",
+    title: "Timothy Chin | Software Engineer",
+    description:
+      "Senior Software Engineer specializing in building elegant solutions to complex problems.",
+    images: ["/og-image.png"],
   },
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#eff1f5' }, // Catppuccin Latte
-    { media: '(prefers-color-scheme: dark)', color: '#1e1e2e' },  // Catppuccin Mocha
+    { media: "(prefers-color-scheme: light)", color: "#f9f7f4" }, // Warm cream
+    { media: "(prefers-color-scheme: dark)", color: "#1a1a1a" }, // Dark charcoal
   ],
 };
 
@@ -51,18 +71,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = generatePersonJsonLd();
-  
   return (
-    <html lang="en" data-theme="mocha">
+    <html
+      lang="en"
+      className={`${playfair.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <ThemeScript />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLd }}
-        />
       </head>
-      <body className="font-mono antialiased">
+      <body className="font-sans antialiased">
         <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
       </body>
