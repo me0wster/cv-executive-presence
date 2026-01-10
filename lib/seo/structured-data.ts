@@ -54,7 +54,7 @@ export const personStructuredData: PersonStructuredData = {
   description:
     "Engineering leader with 12+ years of experience across DevOps, platform engineering, and developer experience. Specializing in AI-powered platforms and cross-functional team leadership.",
   url: "https://timothychinkl.dev",
-  image: "https://timothychinkl.dev/og-image.jpg",
+  image: "https://timothychinkl.dev/og-image.png",
   sameAs: [
     "https://linkedin.com/in/timothychinkl",
     "https://github.com/timothychinkl",

@@ -100,7 +100,7 @@ export const openGraphMetadata: OpenGraphMetadata = {
   locale: "en_US",
   images: [
     {
-      url: "https://timothychinkl.dev/og-image.jpg",
+      url: "https://timothychinkl.dev/og-image.png",
       width: 3024,
       height: 4032,
       alt: "Timothy Chin - Staff Engineer & Technical Leader",
@@ -115,5 +115,5 @@ export const twitterMetadata: TwitterMetadata = {
   title: "Timothy Chin | Staff Engineer & Technical Leader",
   description:
     "Engineering leader with 12+ years in DevOps, platform engineering, and developer experience.",
-  images: ["https://timothychinkl.dev/og-image.jpg"],
+  images: ["https://timothychinkl.dev/og-image.png"],
 };
