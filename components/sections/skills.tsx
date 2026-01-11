@@ -40,21 +40,48 @@ export function SkillsSection() {
                   {category.name}
                 </h3>
 
-                {/* Skills */}
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill) => (
-                    <span
-                      key={skill.name}
-                      className={cn(
-                        "px-3 py-1.5 text-sm rounded-full border transition-colors duration-200",
-                        proficiencyStyles[skill.proficiency || "familiar"]
-                      )}
-                      title={`${skill.proficiency || "familiar"}`}
-                    >
-                      {skill.name}
-                    </span>
-                  ))}
-                </div>
+                {/* Certifications get list-style rendering */}
+                {category.id === "certifications" ? (
+                  <ul className="space-y-3">
+                    {category.skills.map((skill) => (
+                      <li
+                        key={skill.name}
+                        className="flex items-start gap-3 text-sm"
+                      >
+                        <svg
+                          className="w-5 h-5 mt-0.5 text-[var(--color-accent-cta)] shrink-0"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                          />
+                        </svg>
+                        <span className="text-foreground">{skill.name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  /* Skills get pill/badge rendering */
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill) => (
+                      <span
+                        key={skill.name}
+                        className={cn(
+                          "px-3 py-1.5 text-sm rounded-full border transition-colors duration-200",
+                          proficiencyStyles[skill.proficiency || "familiar"]
+                        )}
+                        title={`${skill.proficiency || "familiar"}`}
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </EntranceAnimation>
           ))}
