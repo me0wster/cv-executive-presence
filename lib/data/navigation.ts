@@ -1,9 +1,5 @@
 import type { NavigationItem } from "@/lib/types";
 
-/**
- * Navigation items for the main menu
- * Order determines display sequence
- */
 export const navigationItems: NavigationItem[] = [
   {
     id: "about",

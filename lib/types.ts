@@ -65,6 +65,8 @@ export interface ExperienceEntry {
 // Projects
 // ============================================================================
 
+export type SourcePlatform = "github" | "gitlab";
+
 export interface ProjectEntry {
   id: string;
   title: string;
@@ -73,6 +75,7 @@ export interface ProjectEntry {
   technologies: string[];
   url?: string;
   sourceUrl?: string;
+  sourceType?: SourcePlatform;
   image?: {
     src: string;
     alt: string;

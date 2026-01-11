@@ -1,8 +1,5 @@
 import type { ProjectEntry } from "@/lib/types";
 
-/**
- * Featured projects and portfolio items
- */
 export const projectEntries: ProjectEntry[] = [
   {
     id: "developer-portal",
@@ -33,28 +30,27 @@ export const projectEntries: ProjectEntry[] = [
     order: 2,
   },
   {
-    id: "infrastructure-as-code-templates",
-    title: "Infrastructure as Code Templates",
+    id: "real-time-analytics-dashboard",
+    title: "Real-time Analytics Dashboard",
     description:
-      "Reusable Terraform modules and Kubernetes configurations for standardized infrastructure deployment.",
-    technologies: ["Terraform", "Kubernetes", "AWS", "Helm"],
+      "High-performance dashboard for monitoring Developer and DORA metrics",
+    technologies: ["React", "DevLake"],
     featured: true,
     order: 3,
   },
   {
-    id: "real-time-analytics-dashboard",
-    title: "Real-time Analytics Dashboard",
+    id: "ai-sdk-provider",
+    title: "Watsonx ai-sdk Provider",
     description:
-      "High-performance dashboard for monitoring application metrics and business KPIs.",
-    technologies: ["React", "D3.js", "WebSockets", "ClickHouse"],
+      "Building a LLM SDK Provider for ai-sdk to support IBM's Watsonx AI models.",
+    technologies: ["TypeScript", "ai-sdk"],
+    sourceUrl: "https://github.com/me0wster/watsonx-ai-provider",
+    sourceType: "github",
     featured: true,
     order: 4,
   },
 ];
 
-/**
- * Get featured projects only
- */
 export function getFeaturedProjects(): ProjectEntry[] {
   return projectEntries
     .filter((project) => project.featured)
