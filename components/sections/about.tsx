@@ -5,10 +5,6 @@ import { SectionContainer } from "@/components/ui/section-container";
 import { EntranceAnimation } from "@/components/ui/entrance-animation";
 import { DropCap } from "@/components/ui/drop-cap";
 
-/**
- * About Section - Professional bio and value proposition
- * Two-column layout with drop cap styling
- */
 export function AboutSection() {
   return (
     <SectionContainer
@@ -18,7 +14,6 @@ export function AboutSection() {
       tagline={aboutContent.tagline}
     >
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-        {/* Left Column - Main content */}
         <div className="space-y-6">
           <EntranceAnimation>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -33,7 +28,6 @@ export function AboutSection() {
           </EntranceAnimation>
         </div>
 
-        {/* Right Column - Additional paragraphs */}
         <div className="space-y-6">
           {aboutContent.paragraphs.slice(1).map((paragraph, index) => (
             <EntranceAnimation

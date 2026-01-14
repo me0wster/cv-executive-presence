@@ -7,18 +7,12 @@ import { useScrollTo } from "@/lib/hooks/use-scroll-to";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 
-/**
- * Navigation Component
- * Fixed sidebar on desktop, hamburger menu on mobile
- * Highlights active section based on scroll position
- */
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const activeSection = useActiveSection(sectionIds);
   const scrollTo = useScrollTo();
 
-  // Track scroll for background opacity
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -28,14 +22,12 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on navigation
   const handleNavClick = (e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
     scrollTo(sectionId);
   };
 
-  // Close mobile menu on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -47,7 +39,6 @@ export function Navigation() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -61,7 +52,6 @@ export function Navigation() {
 
   return (
     <>
-      {/* Desktop Navigation - Fixed Right Sidebar */}
       <nav
         className={cn(
           "fixed top-0 right-0 h-screen z-40 hidden lg:flex flex-col justify-center px-8",
@@ -92,7 +82,6 @@ export function Navigation() {
         </ul>
       </nav>
 
-      {/* Mobile Navigation - Top Bar */}
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 lg:hidden",
@@ -103,7 +92,6 @@ export function Navigation() {
         )}
       >
         <div className="flex items-center justify-between px-4 py-4">
-          {/* Logo/Name */}
           <button
             onClick={(e) => handleNavClick(e, "hero")}
             className="font-serif text-xl font-medium text-foreground"
@@ -111,7 +99,6 @@ export function Navigation() {
             TC
           </button>
 
-          {/* Hamburger Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="relative z-50 w-10 h-10 flex flex-col items-center justify-center"
@@ -140,7 +127,6 @@ export function Navigation() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
       <div
         className={cn(
           "fixed inset-0 z-40 lg:hidden",

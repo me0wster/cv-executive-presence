@@ -4,10 +4,6 @@ import { personInfo } from "@/lib/data/person";
 import { SectionContainer } from "@/components/ui/section-container";
 import { EntranceAnimation } from "@/components/ui/entrance-animation";
 
-/**
- * Contact Section - Primary call-to-action for visitor engagement
- * Styled with executive presence aesthetic
- */
 export function ContactSection() {
   const contactLinks = [
     {
@@ -60,7 +56,6 @@ export function ContactSection() {
       tagline="Let's build something great together"
     >
       <div className="max-w-3xl mx-auto">
-        {/* Main CTA text */}
         <EntranceAnimation>
           <p className="text-xl sm:text-2xl text-muted-foreground text-center mb-12 leading-relaxed">
             Interested in collaborating, consulting, or just want to connect?
@@ -68,7 +63,6 @@ export function ContactSection() {
           </p>
         </EntranceAnimation>
 
-        {/* Contact links grid */}
         <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {contactLinks.map((link, index) => (
             <EntranceAnimation
@@ -86,22 +80,18 @@ export function ContactSection() {
                 }
                 className="group flex flex-col items-center justify-center h-full p-6 rounded-lg border border-border/50 hover:border-[var(--color-accent-cta)]/50 transition-all duration-300 hover:shadow-md bg-background"
               >
-                {/* Icon */}
                 <div className="text-muted-foreground transition-colors duration-300 mb-4 group-hover:[color:var(--color-accent-cta)]">
                   {link.icon}
                 </div>
 
-                {/* Label */}
                 <span className="font-serif text-lg text-foreground mb-1">
                   {link.label}
                 </span>
 
-                {/* Value */}
                 <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
                   {link.value}
                 </span>
 
-                {/* External link indicator */}
                 {!link.href?.startsWith("mailto") && (
                   <svg
                     className="w-4 h-4 mt-2 text-muted-foreground/50 transition-colors group-hover:[color:var(--color-accent-cta)]"

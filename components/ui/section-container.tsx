@@ -1,10 +1,6 @@
 import type { SectionContainerProps } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-/**
- * Section Container - Wrapper for consistent section styling
- * Provides consistent padding, max-width, and optional heading/tagline
- */
 export function SectionContainer({
   id,
   title,
@@ -15,7 +11,6 @@ export function SectionContainer({
 }: SectionContainerProps) {
   return (
     <section id={id} className={cn("section-container", className)}>
-      {/* Section Header */}
       <div className="mb-12">
         {subtitle && <p className="section-subheading">{subtitle}</p>}
         <h2 className="section-heading">{title}</h2>
@@ -26,7 +21,6 @@ export function SectionContainer({
         )}
       </div>
 
-      {/* Section Content */}
       {children}
     </section>
   );

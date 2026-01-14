@@ -45,19 +45,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return theme as "light" | "dark";
   });
 
-  // Update resolved theme when theme changes
   useEffect(() => {
     const resolved = theme === "system" ? getSystemTheme() : theme;
     setResolvedTheme(resolved as "light" | "dark");
 
-    // Apply to document
     document.documentElement.classList.toggle("dark", resolved === "dark");
 
-    // Save to localStorage
     localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
-  // Listen for system theme changes
   useEffect(() => {
     if (theme !== "system") return;
 

@@ -6,16 +6,11 @@ import { personInfo } from "@/lib/data/person";
 import { useScrollTo } from "@/lib/hooks/use-scroll-to";
 import { cn } from "@/lib/utils";
 
-/**
- * Hero Section - First impression & professional credibility
- * Inspired by petersand.eu design language
- */
 export function HeroSection() {
   const scrollTo = useScrollTo();
   const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Rotate through animated skills
   useEffect(() => {
     const interval = setInterval(() => {
       setIsAnimating(true);
@@ -35,22 +30,17 @@ export function HeroSection() {
       id="hero"
       className="min-h-screen flex flex-col justify-center bg-background relative overflow-hidden"
     >
-      {/* Background subtle pattern */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
 
       <div className="section-container relative z-10">
-        {/* Top bar with location */}
         <div className="flex items-center justify-between mb-12">
           <p className="text-sm text-muted-foreground tracking-wide">
             {personInfo.location}
           </p>
         </div>
 
-        {/* Main hero content */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Text content */}
           <div className="order-2 lg:order-1">
-            {/* Name with monogram */}
             <div className="mb-8">
               <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal tracking-tight text-foreground">
                 <span>{personInfo.firstName.toUpperCase()}</span>
@@ -65,15 +55,12 @@ export function HeroSection() {
               </h1>
             </div>
 
-            {/* Divider */}
             <div className="w-full h-px bg-border mb-8" />
 
-            {/* Title */}
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl italic text-foreground mb-6">
               {personInfo.title}
             </h2>
 
-            {/* Tagline with animated skill */}
             <p className="text-lg sm:text-xl text-muted-foreground mb-4">
               {personInfo.tagline}
             </p>
@@ -91,7 +78,6 @@ export function HeroSection() {
               </span>
             </p>
 
-            {/* CTA Button */}
             <button
               onClick={() => scrollTo("contact")}
               className="btn-primary inline-flex items-center gap-2 group"
@@ -113,10 +99,8 @@ export function HeroSection() {
             </button>
           </div>
 
-          {/* Right: Photo */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="relative">
-              {/* Photo frame */}
               <div className="relative w-64 h-80 sm:w-80 sm:h-96 lg:w-96 lg:h-[480px] bg-muted overflow-hidden">
                 {personInfo.photo ? (
                   <Image
@@ -134,13 +118,11 @@ export function HeroSection() {
                   </div>
                 )}
               </div>
-              {/* Decorative border offset */}
               <div className="absolute -bottom-4 -right-4 w-full h-full border border-primary/20 -z-10" />
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <button
             onClick={() => scrollTo("about")}

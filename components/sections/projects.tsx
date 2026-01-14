@@ -5,10 +5,6 @@ import { SectionContainer } from "@/components/ui/section-container";
 import { EntranceAnimation } from "@/components/ui/entrance-animation";
 import { cn } from "@/lib/utils";
 
-/**
- * Projects Section - Featured portfolio work
- * Card grid with hover effects and external links
- */
 export function ProjectsSection() {
   const projects = getFeaturedProjects();
 
@@ -32,23 +28,20 @@ export function ProjectsSection() {
                 "group relative flex flex-col h-full",
                 "p-6 rounded-lg border border-border/50",
                 "bg-background hover:bg-muted/30",
-                "hover:border-[var(--color-accent-cta)]/50 hover:shadow-md",
+                "hover:border-accent-cta/50 hover:shadow-md",
                 "transition-all duration-300"
               )}
             >
-              {/* Header */}
               <div className="mb-4">
                 <h3 className="font-serif text-xl text-foreground transition-colors group-hover:[color:var(--color-accent-cta)]">
                   {project.title}
                 </h3>
               </div>
 
-              {/* Description */}
-              <p className="text-muted-foreground mb-4 flex-grow">
+              <p className="text-muted-foreground mb-4 grow">
                 {project.description}
               </p>
 
-              {/* Technologies */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.technologies.slice(0, 4).map((tech) => (
                   <span
@@ -65,7 +58,6 @@ export function ProjectsSection() {
                 )}
               </div>
 
-              {/* Links */}
               <div className="flex gap-4 mt-auto pt-4 border-t border-border/50">
                 {project.url && (
                   <a

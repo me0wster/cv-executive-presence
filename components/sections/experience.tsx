@@ -5,10 +5,6 @@ import { SectionContainer } from "@/components/ui/section-container";
 import { EntranceAnimation } from "@/components/ui/entrance-animation";
 import { cn } from "@/lib/utils";
 
-/**
- * Experience Section - Career timeline with accomplishments
- * Card layout with staggered entrance animations
- */
 export function ExperienceSection() {
   return (
     <SectionContainer
@@ -30,10 +26,8 @@ export function ExperienceSection() {
                 "hover:border-primary transition-colors duration-300"
               )}
             >
-              {/* Timeline dot */}
               <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-background border-2 border-primary" />
 
-              {/* Header */}
               <div className="mb-4">
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
                   <h3 className="font-serif text-2xl text-foreground">
@@ -53,10 +47,8 @@ export function ExperienceSection() {
                 )}
               </div>
 
-              {/* Description */}
               <p className="text-muted-foreground mb-4">{entry.description}</p>
 
-              {/* Accomplishments */}
               <ul className="space-y-2 mb-4">
                 {entry.accomplishments.map((accomplishment, i) => (
                   <li
@@ -69,7 +61,6 @@ export function ExperienceSection() {
                 ))}
               </ul>
 
-              {/* Technologies */}
               {entry.technologies && entry.technologies.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {entry.technologies.map((tech) => (

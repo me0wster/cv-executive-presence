@@ -5,11 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import type { EntranceAnimationProps } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-/**
- * Entrance Animation - Triggers animation when element enters viewport
- * Uses IntersectionObserver for performance
- * Respects prefers-reduced-motion
- */
 export function EntranceAnimation({
   children,
   delay = 0,
@@ -22,7 +17,6 @@ export function EntranceAnimation({
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  // Check for reduced motion preference
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
@@ -35,7 +29,6 @@ export function EntranceAnimation({
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
-  // Intersection Observer for triggering animation
   useEffect(() => {
     if (disabled || prefersReducedMotion) {
       setIsVisible(true);
@@ -46,7 +39,7 @@ export function EntranceAnimation({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect(); // Only animate once
+          observer.disconnect();
         }
       },
       {

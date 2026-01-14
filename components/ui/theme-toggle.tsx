@@ -3,10 +3,6 @@
 import { useTheme } from "@/components/theme/theme-provider";
 import { cn } from "@/lib/utils";
 
-/**
- * Theme Toggle - Sun/Moon icon button for theme switching
- * Supports light/dark/system modes
- */
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme();
 
@@ -32,7 +28,6 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label={`Current theme: ${theme}. Click to cycle themes.`}
       title={`Theme: ${theme}`}
     >
-      {/* Sun icon - shown in dark mode */}
       <svg
         className={cn(
           "w-5 h-5 transition-all duration-300",
@@ -52,7 +47,6 @@ export function ThemeToggle({ className }: { className?: string }) {
         />
       </svg>
 
-      {/* Moon icon - shown in light mode */}
       <svg
         className={cn(
           "w-5 h-5 transition-all duration-300",
@@ -72,7 +66,6 @@ export function ThemeToggle({ className }: { className?: string }) {
         />
       </svg>
 
-      {/* System indicator */}
       {theme === "system" && (
         <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />
       )}
