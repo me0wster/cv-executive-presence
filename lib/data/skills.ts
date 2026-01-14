@@ -50,7 +50,9 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "ai-sdk", proficiency: "expert" },
       { name: "LangChain", proficiency: "proficient" },
-      { name: "Context & Prompt Engineering", proficiency: "proficient" },
+      { name: "Context Engineering", proficiency: "proficient" },
+      { name: "Prompt Engineering", proficiency: "proficient" },
+
       {
         name: "LLM Compliance, Governance & Ethics",
         proficiency: "proficient",

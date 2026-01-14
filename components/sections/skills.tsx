@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils";
 export function SkillsSection() {
   const proficiencyStyles = {
     expert:
-      "bg-primary/10 dark:bg-primary/15 text-foreground border-primary/40 dark:border-primary/60 font-medium shadow-sm",
+      "bg-accent-cta/10 dark:bg-accent-cta/15 text-accent-cta dark:text-accent-cta border-accent-cta/40 dark:border-accent-cta/60 font-semibold shadow-sm ring-1 ring-accent-cta/10 dark:ring-accent-cta/20",
     proficient:
-      "bg-secondary/50 dark:bg-secondary text-secondary-foreground border-border/50 dark:border-border",
+      "bg-muted/80 dark:bg-muted text-foreground border-border/60 dark:border-border font-medium",
     familiar:
-      "bg-transparent text-muted-foreground border border-border/40 dark:border-border/60",
+      "bg-transparent text-muted-foreground/90 dark:text-muted-foreground border border-border/50 dark:border-border/70 font-normal",
   };
 
   return (
@@ -88,16 +88,16 @@ export function SkillsSection() {
             Proficiency levels:
           </p>
           <div className="flex flex-wrap gap-6">
-            <span className="flex items-center gap-2 text-sm text-foreground">
-              <span className="w-4 h-4 rounded-full bg-primary/10 dark:bg-primary/15 border border-primary/40 dark:border-primary/60" />
+            <span className="flex items-center gap-2 text-sm text-accent-cta font-semibold">
+              <span className="w-4 h-4 rounded-full bg-accent-cta/10 dark:bg-accent-cta/15 border border-accent-cta/40 dark:border-accent-cta/60 ring-1 ring-accent-cta/10 dark:ring-accent-cta/20" />
               Expert
             </span>
             <span className="flex items-center gap-2 text-sm text-foreground">
-              <span className="w-4 h-4 rounded-full bg-secondary/50 dark:bg-secondary border border-border/50 dark:border-border" />
+              <span className="w-4 h-4 rounded-full bg-muted/80 dark:bg-muted border border-border/60 dark:border-border" />
               Proficient
             </span>
-            <span className="flex items-center gap-2 text-sm text-foreground">
-              <span className="w-4 h-4 rounded-full bg-transparent border border-border/40 dark:border-border/60" />
+            <span className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span className="w-4 h-4 rounded-full bg-transparent border border-border/50 dark:border-border/70" />
               Familiar
             </span>
           </div>
