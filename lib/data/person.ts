@@ -3,7 +3,7 @@ import type { PersonInfo } from "@/lib/types";
 export const personInfo: PersonInfo = {
   firstName: "Timothy",
   lastName: "Chin",
-  title: "Staff Engineer",
+  title: "Technical Leader",
   tagline: "Architecting DevEx & DevOps AI-Powered Platform",
   animatedSkills: [
     "DevOps",
