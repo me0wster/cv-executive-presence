@@ -30,7 +30,7 @@ export function HeroSection() {
       id="hero"
       className="min-h-screen flex flex-col justify-center bg-background relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-primary/5 to-transparent pointer-events-none" />
 
       <div className="section-container relative z-10">
         <div className="flex items-center justify-between mb-12">
@@ -107,7 +107,7 @@ export function HeroSection() {
                     src={personInfo.photo.src}
                     alt={personInfo.photo.alt}
                     fill
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                    className="object-cover transition-all duration-500"
                     priority
                   />
                 ) : (
