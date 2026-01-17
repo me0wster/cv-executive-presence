@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
 import { Playfair_Display, Inter } from "next/font/google";
 import type React from "react";
 
+import { PHProvider } from "./providers";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ThemeScript } from "@/components/theme/theme-script";
 
@@ -81,8 +81,9 @@ export default function RootLayout({
         <ThemeScript />
       </head>
       <body className="font-sans antialiased">
-        <ThemeProvider>{children}</ThemeProvider>
-        <Analytics />
+        <PHProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </PHProvider>
       </body>
     </html>
   );
