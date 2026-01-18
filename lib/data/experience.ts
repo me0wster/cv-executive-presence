@@ -9,12 +9,13 @@ export const experienceEntries: ExperienceEntry[] = [
     description:
       "Leading DevOps and Software engineering initiatives for an Internal Developer Portal product",
     accomplishments: [
-      "Engage closely with product and business teams to shape product vision and drive successful market integrations. Providing feedback as part of the Initiative, UX and research process",
-      "Architecting AI-powered developer platform improving team productivity by 50%",
-      "Designing and implementing highly scalable and multi-regionKubernetes-based infrastructure serving both internal and external facing customers",
-      "Designing and implmenting our observability around OpenTelemetry for scalable, unified metrics, traces, and logs",
-      "Establishing development excellence via GitOps, platform engineering practices, and golden paths for application deployment",
-      "Mentoring and training junior engineers on best practices and technologies around software engineering, DevOps and AI",
+      "Architected the technical vision for the Venue.sh platform, defining internal and external technology stacks to ensure a seamless, scalable user experience and reducing onboarding time for new services by 50% and improving reliability by 2x factor",
+      "Leading and mentoring a cross-functional team of Software and DevOps/SRE engineers, driving alignment with overall business objectives and technical excellence. Guiding team members in their career development paths while helping the engineering team continuously deliver through building a robust and performant CI/CD pipeline.",
+      "Building a Generative AI system that integrates with the Internal Developer Portal (IDP) (Venue.sh) turning it from a static information hub into an interactive, conversational hub with context about your CI/CD practices reducing support tickets by 90% and lead time for changes from hours to 5 - 10 minutes",
+      "Designed and implemented multi, high availability Kubernetes cluster solutions that includes an Observability (OTEL) solution for our platform mixing different classes of server pricing, network topologies and applications to significantly reduce costs by $1000/month.",
+      "Engage with the CSO (security) to define and implement procedures to meet and maintain our ISO 27001 & SOC 2 compliance.",
+      "Engage closely with product and business teams to shape product vision and drive successful market integrations. Providing feedback as part of the Initiative, UX and research process.",
+      "Mentored engineers across DevOps, backend, and platform disciplines, promoting technical ownership and growth. This includes regular office hours and 1-1 sessions.",
     ],
     technologies: [
       "ArgoCD",
@@ -42,6 +43,8 @@ export const experienceEntries: ExperienceEntry[] = [
       "Advised on integrations and platform scalability, ensuring that technical solutions aligned with long-term business strategies. Working with account managers and project managers to not only deliver existing requirements but also expand into different areas of the existing relationship.",
       "Served as the subject matter expert, communicating complex technical concepts to executive leadership and cross-functional teams. Helping the teams across the organization and roles understand the end goal through DevOps principles of people, processes and tools.",
       "Leading a rapid transition from SaaS hosting to AWS for key customers, delivering operational readiness within two weeks and achieving cost savings exceeding $100K",
+      "Leading a team of 5 consultants to migrate 20 years of legacy projects from SVN to GitLab for a major financial institution, consolidating different build processes (e.g. Jenkins, bash, make, etc.) pipelines and modernizing CI/CD workflows. Collaborated with 10 cross-functional customer teams to ensure seamless integration, adoption and security posture. Served as the Principal DevOps Consultant driving enterprise-wide modernization initiatives.",
+      "Led the rollout of a full Dev-Staging-Prod environment supporting 27 brand single-page applications built with Nx enabling teams to ship 2x faster with improved feedback. Orchestrated a rapid migration from Netlify to Amazon ECS in just two weeks in response to strategic changes. Partnered with software engineering leadership to ensure scalability, maintainability, and delivery excellence.",
     ],
     technologies: [
       "AWS",
