@@ -4,17 +4,19 @@ export const personInfo: PersonInfo = {
   firstName: "Timothy",
   lastName: "Chin",
   title: "Technical Leader",
-  tagline: "Architecting DevEx & DevOps AI-Powered Platform",
+  tagline:
+    "Scaling DevEx and DevOps in Engineering Teams with AI powered solutions",
   animatedSkills: [
+    "Engineering Leader",
     "DevOps",
     "Platform Engineering",
     "Developer Experience",
     "Kubernetes",
-    "AI/ML",
+    "Gen AI",
     "TypeScript",
     "React",
     "Next.js",
-    "Backstage",
+    "Internal Developer Portals",
     "Cloud Architecture",
     "System Design",
   ],
@@ -30,12 +32,15 @@ export const personInfo: PersonInfo = {
 };
 
 export const aboutContent = {
-  headline: "Architecting AI-Powered Platforms",
+  headline:
+    "Scaling DevEx and DevOps in Engineering Teams with AI powered solutions",
   subheadline:
     "Over a decade of expertise in building scalable systems and leading high-performing teams",
   paragraphs: [
-    `Visionary engineering leader with 12+ years of experience transforming technical vision into scalable reality across DevOps, platform engineering, and developer experience (DevEx). I combine strategic insight with empathetic leadership, having architected, built, and led engineering teams from startup inception through scale; delivering multi-cloud platforms and internal products that streamline workflows while driving measurable business impact.`,
-    `As a technical leader, I lead with both technical precision and deep understanding of team dynamics, designing DevEx-focused solutions that reduce friction, accelerate velocity, and align engineering outcomes with organizational goals. Currently spearheading AI initiatives, I've architected and implemented the platform around the Internal Developer Portal and the agentic and generative AI solutions that transforms it into an intelligent, conversational interface. I bring values-driven leadership, strategic execution, and a proven ability to build both technology and teams that deliver sustained impact across complex engineering ecosystems.`,
+    "Timothy is an Engineering Leader who builds engineering organizations, sets technical direction, and ships platforms that help engineers do their best work. He has grown teams from the ground up, made high-stakes architecture decisions, and driven execution through thoughtful planning and strong cross-functional alignment. He has managed consultants supporting 100+ engineers across enterprise clients and architected multi-cloud platforms and internal products that reduce developer friction, improve reliability, and accelerate delivery.",
+    "When problems surface, Timothy's instinct is to investigate before prescribing. He digs into the issue independently first, understanding the root cause, the constraints, and the trade-offs; then constructs an incremental solution to present to the team for deliberate, well-understood execution. This style is built on conviction over assumption, and clarity over speed. He turns broad technical vision into deliverable outcomes, balancing tough architectural trade-offs with the discipline of \"what's the right decision right now.\" He communicates regularly with executives and stakeholders across business units, summarizing team progress, leading technical discussions, and owning incident and RCA reporting when things get hard.",
+    "Timothy is particularly focused on AI — not as a trend, but as infrastructure. At Venue.sh, he is spearheading the agentic AI initiative, transforming the developer portal into a conversational interface that understands how engineering teams work and meets them where they are.",
+    "He cares deeply about building teams that are trusted, effective, and proud of what they ship. The through line across his career is consistent: create leverage, reduce friction, and help great engineers do great work.",
   ],
   tagline: "Per aspera ad astra",
 };

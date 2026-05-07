@@ -9,13 +9,13 @@ export const experienceEntries: ExperienceEntry[] = [
     description:
       "Leading DevOps and Software engineering initiatives for an Internal Developer Portal product",
     accomplishments: [
-      "Architected the technical vision for the Venue.sh platform, defining internal and external technology stacks to ensure a seamless, scalable user experience and reducing onboarding time for new services by 50% and improving reliability by 2x factor",
-      "Leading and mentoring a cross-functional team of Software and DevOps/SRE engineers, driving alignment with overall business objectives and technical excellence. Guiding team members in their career development paths while helping the engineering team continuously deliver through building a robust and performant CI/CD pipeline.",
+      "Built and scaled a cross-functional Software and DevOps/SRE engineering organization, establishing the systems that drive performance via structured 1:1, clear performance feedback cycles and career development frameworks that give engineers a path to grow and a reason to stay",
+      "Own full delivery accountability by leading Agile sessions, managing engineering timelines and setting expectations with management and business stakeholders; translating product initiatives into executable roadmaps and ensuring commitments are met quarter over quarter",
+      "Defining and driving the technical and architectural designs for the Venue.sh platform; Making decisive architecture calls, running design review sessions to pressure-test decisions and owning the outcome. When critical systems break, stepping in directly to help diagnose and resolve issues.",
+      "Serving as the team's engineering voice upward and outward; representing the team in the larger organization when it comes to incident and operations monthly meetings",
       "Building a Generative AI system that integrates with the Internal Developer Portal (IDP) (Venue.sh) turning it from a static information hub into an interactive, conversational hub with context about your CI/CD practices reducing support tickets by 90% and lead time for changes from hours to 5 - 10 minutes",
       "Designed and implemented multi, high availability Kubernetes cluster solutions that includes an Observability (OTEL) solution for our platform mixing different classes of server pricing, network topologies and applications to significantly reduce costs by $1000/month.",
-      "Engage with the CSO (security) to define and implement procedures to meet and maintain our ISO 27001 & SOC 2 compliance.",
       "Engage closely with product and business teams to shape product vision and drive successful market integrations. Providing feedback as part of the Initiative, UX and research process.",
-      "Mentored engineers across DevOps, backend, and platform disciplines, promoting technical ownership and growth. This includes regular office hours and 1-1 sessions.",
     ],
     technologies: [
       "ArgoCD",

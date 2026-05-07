@@ -103,13 +103,24 @@ export function HeroSection() {
             <div className="relative">
               <div className="relative w-64 h-80 sm:w-80 sm:h-96 lg:w-96 lg:h-[480px] bg-muted overflow-hidden">
                 {personInfo.photo ? (
-                  <Image
-                    src={personInfo.photo.src}
-                    alt={personInfo.photo.alt}
-                    fill
-                    className="object-cover transition-all duration-500"
-                    priority
-                  />
+                  <>
+                    <Image
+                      src={personInfo.photo.src}
+                      alt={personInfo.photo.alt}
+                      fill
+                      className="object-cover transition-all duration-500"
+                      priority
+                    />
+                    {/* Halftone dot overlay */}
+                    <div
+                      className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-40"
+                      style={{
+                        backgroundImage: `radial-gradient(circle, black 15%, transparent 35%)`,
+                        backgroundSize: "4px 4px",
+                        backgroundPosition: "0 0, 4px 4px",
+                      }}
+                    />
+                  </>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-muted">
                     <span className="font-serif text-6xl text-muted-foreground">
