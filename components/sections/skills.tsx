@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 export function SkillsSection() {
   const proficiencyStyles = {
     expert:
-      "bg-accent-cta/10 dark:bg-accent-cta/15 text-accent-cta dark:text-accent-cta border-accent-cta/40 dark:border-accent-cta/60 font-semibold shadow-sm ring-1 ring-accent-cta/10 dark:ring-accent-cta/20",
+      "bg-accent-cta/10 dark:bg-accent-cta/15 text-accent-cta dark:text-accent-cta border border-accent-cta dark:border-accent-cta font-semibold shadow-sm ring-1 ring-accent-cta/10 dark:ring-accent-cta/20",
     proficient:
-      "bg-muted/80 dark:bg-muted text-foreground border-border/60 dark:border-border font-medium",
+      "bg-muted/80 dark:bg-muted text-foreground border border-foreground/30 dark:border-foreground/25 font-medium",
     familiar:
       "bg-transparent text-muted-foreground/90 dark:text-muted-foreground border border-border/50 dark:border-border/70 font-normal",
   };
@@ -68,7 +68,7 @@ export function SkillsSection() {
                         key={skill.name}
                         className={cn(
                           "px-3 py-1.5 text-sm rounded-full transition-all duration-200 hover:scale-105",
-                          proficiencyStyles[skill.proficiency || "familiar"]
+                          proficiencyStyles[skill.proficiency || "familiar"],
                         )}
                         title={`${skill.proficiency || "familiar"}`}
                       >
@@ -89,11 +89,11 @@ export function SkillsSection() {
           </p>
           <div className="flex flex-wrap gap-6">
             <span className="flex items-center gap-2 text-sm text-accent-cta font-semibold">
-              <span className="w-4 h-4 rounded-full bg-accent-cta/10 dark:bg-accent-cta/15 border border-accent-cta/40 dark:border-accent-cta/60 ring-1 ring-accent-cta/10 dark:ring-accent-cta/20" />
+              <span className="w-4 h-4 rounded-full bg-accent-cta/10 dark:bg-accent-cta/15 border border-accent-cta dark:border-accent-cta ring-1 ring-accent-cta/10 dark:ring-accent-cta/20" />
               Expert
             </span>
             <span className="flex items-center gap-2 text-sm text-foreground">
-              <span className="w-4 h-4 rounded-full bg-muted/80 dark:bg-muted border border-border/60 dark:border-border" />
+              <span className="w-4 h-4 rounded-full bg-muted/80 dark:bg-muted border border-foreground/30 dark:border-foreground/25" />
               Proficient
             </span>
             <span className="flex items-center gap-2 text-sm text-muted-foreground">

@@ -3,7 +3,7 @@ import type { ExperienceEntry } from "@/lib/types";
 export const experienceEntries: ExperienceEntry[] = [
   {
     company: "Venue.sh",
-    title: "Engineering Lead / Staff Engineer",
+    title: "Engineering Manager / Staff Engineer",
     startDate: "March 2023",
     location: "New York, NY",
     description:
@@ -22,6 +22,7 @@ export const experienceEntries: ExperienceEntry[] = [
       "AWS",
       "Backstage",
       "CI/CD",
+      "Engineering Leadership",
       "Kubernetes",
       "Next.js",
       "OpenTelemetry",
