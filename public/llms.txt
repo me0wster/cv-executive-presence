@@ -1,0 +1,41 @@
+# Timothy Chin
+
+> Technical Leader scaling DevEx and DevOps in engineering teams with AI-powered solutions. Over a decade of expertise in building scalable systems and leading high-performing teams.
+
+Timothy is an Engineering Leader who builds engineering organizations, sets technical direction, and ships platforms that help engineers do their best work. He has grown teams from the ground up, made high-stakes architecture decisions, and driven execution through thoughtful planning and strong cross-functional alignment. He has managed consultants supporting 100+ engineers across enterprise clients and architected multi-cloud platforms and internal products that reduce developer friction, improve reliability, and accelerate delivery.
+
+Timothy is particularly focused on AI — not as a trend, but as infrastructure. At Venue.sh, he is spearheading the agentic AI initiative, transforming the developer portal into a conversational interface that understands how engineering teams work and meets them where they are.
+
+## Experience
+
+- [Venue.sh — Engineering Manager / Staff Engineer](https://timothychin.com/#experience): Leading DevOps and Software engineering initiatives for an Internal Developer Portal product. Built and scaled a cross-functional engineering organization. Driving the technical and architectural direction for the platform. Building a Generative AI system that integrates with the IDP, reducing support tickets by 90% and lead time from hours to 5–10 minutes. Designed multi-AZ Kubernetes cluster solutions with OTEL observability, reducing costs by $1000/month. March 2023–Present, New York, NY.
+- [Adapvatist — Principal DevOps Consultant](https://timothychin.com/#experience): Spearheaded technical solution design and project strategy for enterprise clients. Led rapid SaaS-to-AWS transitions saving $100K+. Managed migration of 20 years of legacy projects from SVN to GitLab for a major financial institution. Led rollout of Dev-Staging-Prod environments supporting 27 brand SPAs enabling teams to ship 2x faster. April 2021–March 2023.
+- [ConnectAll — DevOps Architect](https://timothychin.com/#experience): Transformed monolithic Java legacy applications into containerized Kubernetes solutions reducing build/deployment time by 5x. Managed dual-role DevOps and IT operations team. June 2020–April 2021.
+
+## Skills
+
+- Platform Engineering: Kubernetes (expert), Docker (expert), Terraform/Tofu (expert), Backstage (expert), ArgoCD, Crossplane, Helm, Ansible, OpenTelemetry
+- Cloud & Infrastructure: AWS (expert), GCP, Azure
+- Languages & Frameworks: Python (expert), Next.js (expert), TypeScript, React, Go, Java, Node.js, Bash
+- Generative AI: ai-sdk (expert), MCP (expert), LangChain, Context Engineering, Prompt Engineering, RAG, Vector Databases, LLM Compliance/Governance/Ethics
+- Practices: Engineering Leadership (expert), Technical Leadership (expert), DevOps (expert), CI/CD (expert), System Design (expert), Agile/Scrum (expert), Mentorship (expert)
+
+## Certifications
+
+- Certified Backstage Associate (Exam Developer)
+- Certified Cloud Native Platform Engineering Associate (CNPA)
+- GitLab Professional Services Engineer
+- AWS Solutions Architect Associate
+
+## Projects
+
+- [Developer Portal](https://timothychin.com/#projects): Internal developer portal built with Backstage for service catalog, documentation, and golden paths. Centralizes service ownership, API documentation, and deployment workflows with automated scaffolding and real-time service health monitoring. Technologies: Backstage, TypeScript, React, PostgreSQL, Kubernetes.
+- [AI Code Assistant](https://timothychin.com/#projects): LLM-powered coding assistant integrated into the development workflow for code review and suggestions. Privacy-first approach using self-hosted models. Technologies: Python, LangChain, OpenAI, FastAPI, Redis.
+- [Real-time Analytics Dashboard](https://timothychin.com/#projects): High-performance dashboard for monitoring Developer and DORA metrics. Technologies: React, DevLake.
+- [Watsonx ai-sdk Provider](https://github.com/me0wster/watsonx-ai-provider): Building an LLM SDK Provider for ai-sdk to support IBM's Watsonx AI models. Technologies: TypeScript, ai-sdk.
+
+## Contact
+
+- Email: timothyckl@gmail.com
+- LinkedIn: https://www.linkedin.com/in/timothychinkl
+- GitHub: https://github.com/me0wster

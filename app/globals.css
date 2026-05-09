@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* 
- * Executive Presence Theme
+ * Executive Theme
  * Based on specs/002-executive-redesign/reference/index.css
  * Warm beige palette inspired by petersand.eu
  */
@@ -53,10 +53,12 @@
 
   /* Typography */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria,
-    "Times New Roman", Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  --font-serif:
+    var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 
   /* Spacing & Radius */
   --radius: 0.5rem;

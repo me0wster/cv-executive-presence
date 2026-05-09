@@ -1,5 +1,5 @@
 /**
- * Type definitions for Executive Presence CV
+ * Type definitions for Executive CV
  * Based on data-model.md from specs/002-executive-redesign/
  */
 
