@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { worldConfig } from "@/lib/world/world-config";
 import { cn } from "@/lib/utils";
+import { worldConfig } from "@/lib/world/world-config";
+import { useEffect, useState } from "react";
 
 interface WorldNavProps {
   activeChapter: number;
@@ -24,7 +24,7 @@ export function WorldNav({ activeChapter, onNavigate }: WorldNavProps) {
     <header
       className={cn(
         "world-nav fixed inset-x-0 top-0 z-50 flex h-[var(--world-nav-h)] items-center gap-6 px-[var(--world-pad)]",
-        isStuck && "world-nav-stuck"
+        isStuck && "world-nav-stuck",
       )}
     >
       <button
@@ -39,13 +39,13 @@ export function WorldNav({ activeChapter, onNavigate }: WorldNavProps) {
           <b className="text-xs tracking-[0.26em] text-[var(--world-bone)]">
             TIMOTHY CHIN
           </b>
-          <i className="text-[8px] not-italic tracking-[0.34em] text-[var(--world-muted)]">
-            {worldConfig.label}
-          </i>
         </span>
       </button>
 
-      <nav className="ml-auto hidden items-center gap-8 lg:flex" aria-label="Primary">
+      <nav
+        className="ml-auto hidden items-center gap-8 lg:flex"
+        aria-label="Primary"
+      >
         {chapters.slice(1).map((chapter, index) => (
           <button
             key={chapter.id}
@@ -55,7 +55,7 @@ export function WorldNav({ activeChapter, onNavigate }: WorldNavProps) {
               "relative min-h-[44px] text-[11px] uppercase tracking-[0.2em] transition-colors",
               activeChapter === index + 1
                 ? "text-[var(--world-bone)]"
-                : "text-[var(--world-bone-dim)] hover:text-[var(--world-bone)]"
+                : "text-[var(--world-bone-dim)] hover:text-[var(--world-bone)]",
             )}
           >
             {chapter.label}

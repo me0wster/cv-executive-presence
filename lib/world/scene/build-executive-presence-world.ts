@@ -43,9 +43,11 @@ export function buildExecutivePresenceWorld(scene: THREE.Scene): ScrollWorldScen
   const paperMat = new THREE.MeshStandardMaterial({
     map: paperTexture,
     color: 0xffffff,
-    roughness: 0.92,
+    roughness: 0.94,
     metalness: 0,
     side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.52,
   });
 
   const frames: Array<{ x: number; y: number; z: number; w: number; h: number; rotY: number }> = [
@@ -80,9 +82,11 @@ export function buildExecutivePresenceWorld(scene: THREE.Scene): ScrollWorldScen
       new THREE.PlaneGeometry(frame.w + 0.08, frame.h + 0.08),
       new THREE.MeshStandardMaterial({
         color: 0xe8dfd4,
-        roughness: 0.88,
+        roughness: 0.92,
         metalness: 0.02,
         side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.28,
       })
     );
     border.position.copy(sheet.position);

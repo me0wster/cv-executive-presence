@@ -10,7 +10,7 @@ export const worldChapters: WorldChapter[] = [
   {
     id: "hero",
     label: sectionTitle("hero"),
-    scrollWeight: 1.2,
+    scrollWeight: 1,
     copy: {
       eyebrow: "Executive Presence",
       title: `${personInfo.firstName} ${personInfo.lastName}`,
@@ -26,12 +26,18 @@ export const worldChapters: WorldChapter[] = [
         fov: 46,
       },
     },
-    world: { fog: 0.006, key: 1.1, practicals: 0.2, particles: 0.12, grade: "warm" },
+    world: {
+      fog: 0.006,
+      key: 1.1,
+      practicals: 0.2,
+      particles: 0.12,
+      grade: "warm",
+    },
   },
   {
     id: "about",
     label: sectionTitle("about"),
-    scrollWeight: 1.1,
+    scrollWeight: 0.85,
     copy: {
       eyebrow: "Who I Am",
       title: aboutContent.headline,
@@ -47,12 +53,18 @@ export const worldChapters: WorldChapter[] = [
         fov: 48,
       },
     },
-    world: { fog: 0.007, key: 1.05, practicals: 0.25, particles: 0.14, grade: "warm" },
+    world: {
+      fog: 0.007,
+      key: 1.05,
+      practicals: 0.25,
+      particles: 0.14,
+      grade: "warm",
+    },
   },
   {
     id: "experience",
     label: sectionTitle("experience"),
-    scrollWeight: 1.3,
+    scrollWeight: 1,
     copy: {
       eyebrow: "Career Journey",
       title: "Experience",
@@ -68,12 +80,18 @@ export const worldChapters: WorldChapter[] = [
         fov: 47,
       },
     },
-    world: { fog: 0.008, key: 1, practicals: 0.3, particles: 0.16, grade: "neutral" },
+    world: {
+      fog: 0.008,
+      key: 1,
+      practicals: 0.3,
+      particles: 0.16,
+      grade: "neutral",
+    },
   },
   {
     id: "skills",
     label: sectionTitle("skills"),
-    scrollWeight: 1.15,
+    scrollWeight: 0.9,
     copy: {
       eyebrow: "Expertise",
       title: "Skills",
@@ -89,12 +107,18 @@ export const worldChapters: WorldChapter[] = [
         fov: 46,
       },
     },
-    world: { fog: 0.007, key: 0.98, practicals: 0.35, particles: 0.15, grade: "warm" },
+    world: {
+      fog: 0.007,
+      key: 0.98,
+      practicals: 0.35,
+      particles: 0.15,
+      grade: "warm",
+    },
   },
   {
     id: "projects",
     label: sectionTitle("projects"),
-    scrollWeight: 1.2,
+    scrollWeight: 0.9,
     copy: {
       eyebrow: "Selected Work",
       title: "Projects",
@@ -110,12 +134,18 @@ export const worldChapters: WorldChapter[] = [
         fov: 44,
       },
     },
-    world: { fog: 0.006, key: 1.02, practicals: 0.28, particles: 0.12, grade: "neutral" },
+    world: {
+      fog: 0.006,
+      key: 1.02,
+      practicals: 0.28,
+      particles: 0.12,
+      grade: "neutral",
+    },
   },
   {
     id: "contact",
     label: sectionTitle("contact"),
-    scrollWeight: 1.05,
+    scrollWeight: 0.8,
     copy: {
       eyebrow: "Get in Touch",
       title: "Contact",
@@ -131,6 +161,12 @@ export const worldChapters: WorldChapter[] = [
         fov: 48,
       },
     },
-    world: { fog: 0.005, key: 1, practicals: 0.22, particles: 0.1, grade: "warm" },
+    world: {
+      fog: 0.005,
+      key: 1,
+      practicals: 0.22,
+      particles: 0.1,
+      grade: "warm",
+    },
   },
 ];

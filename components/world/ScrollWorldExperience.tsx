@@ -1,21 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-import { createScrollConductor } from "@/lib/world/scroll-conductor";
-import { getChapterIndex, worldConfig } from "@/lib/world/world-config";
-import type { ScrollProgressState } from "@/lib/world/types";
 import { WorldChapterRail } from "@/components/world/WorldChapterRail";
 import { WorldChapterSections } from "@/components/world/WorldChapterSections";
 import { WorldNav } from "@/components/world/WorldNav";
 import { WorldContentSurface } from "@/components/world/ui/WorldContentSurface";
+import { createScrollConductor } from "@/lib/world/scroll-conductor";
+import type { ScrollProgressState } from "@/lib/world/types";
+import { getChapterIndex, worldConfig } from "@/lib/world/world-config";
+import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
 
 const ScrollWorldCanvas = dynamic(
   () =>
     import("@/components/world/ScrollWorldCanvas").then(
-      (mod) => mod.ScrollWorldCanvas
+      (mod) => mod.ScrollWorldCanvas,
     ),
-  { ssr: false }
+  { ssr: false },
 );
 
 const initialProgress: ScrollProgressState = {
@@ -33,7 +33,8 @@ const initialProgress: ScrollProgressState = {
 
 export function ScrollWorldExperience() {
   const pageRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState<ScrollProgressState>(initialProgress);
+  const [progress, setProgress] =
+    useState<ScrollProgressState>(initialProgress);
   const [activeChapter, setActiveChapter] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -65,7 +66,7 @@ export function ScrollWorldExperience() {
 
   useEffect(() => {
     const sections = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-cam]")
+      document.querySelectorAll<HTMLElement>("[data-cam]"),
     );
     if (!sections.length) return;
 
@@ -114,10 +115,10 @@ export function ScrollWorldExperience() {
         <WorldChapterSections reducedMotion={reducedMotion} />
       </div>
 
-      <footer className="world-footer relative z-10 px-[var(--world-pad)] py-8">
-        <WorldContentSurface className="inline-block rounded-sm px-6 py-4">
+      <footer className="world-footer relative z-10 px-[var(--world-pad)] pb-6 pt-2">
+        <WorldContentSurface className="inline-block px-6 py-4">
           <p className="text-xs tracking-[0.18em] text-[var(--world-muted)]">
-            © {new Date().getFullYear()} Timothy Chin — {worldConfig.footerLabel}
+            © {new Date().getFullYear()} Timothy Chin
           </p>
         </WorldContentSurface>
       </footer>
