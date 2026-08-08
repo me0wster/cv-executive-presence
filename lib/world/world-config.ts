@@ -4,15 +4,15 @@ import type { QualityProfile, WorldChapter } from "@/lib/world/types";
 
 export const worldQuality = {
   mobile: {
-    dpr: 1.25,
-    shadows: 512,
-    particles: 0.3,
+    dpr: 1,
+    shadows: 0,
+    particles: 0.25,
     post: "lite",
   } satisfies QualityProfile,
   desktop: {
-    dpr: 1.5,
-    shadows: 1024,
-    particles: 0.55,
+    dpr: 1.125,
+    shadows: 0,
+    particles: 0.4,
     post: "lite",
   } satisfies QualityProfile,
 };

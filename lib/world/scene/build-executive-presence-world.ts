@@ -21,7 +21,15 @@ function createPaperTexture(size = 256): THREE.CanvasTexture {
   return texture;
 }
 
-export function buildExecutivePresenceWorld(scene: THREE.Scene): ScrollWorldScene {
+export interface BuildExecutivePresenceWorldOptions {
+  particleScale?: number;
+}
+
+export function buildExecutivePresenceWorld(
+  scene: THREE.Scene,
+  options: BuildExecutivePresenceWorldOptions = {}
+): ScrollWorldScene {
+  const particleScale = options.particleScale ?? 0.4;
   const root = new THREE.Group();
   root.name = "executive-presence";
 
@@ -37,7 +45,7 @@ export function buildExecutivePresenceWorld(scene: THREE.Scene): ScrollWorldScen
     })
   );
   floor.rotation.x = -Math.PI / 2;
-  floor.receiveShadow = true;
+  floor.receiveShadow = false;
   root.add(floor);
 
   const paperMat = new THREE.MeshStandardMaterial({
@@ -72,8 +80,8 @@ export function buildExecutivePresenceWorld(scene: THREE.Scene): ScrollWorldScen
     );
     sheet.position.set(frame.x, frame.y, frame.z);
     sheet.rotation.y = frame.rotY;
-    sheet.castShadow = true;
-    sheet.receiveShadow = true;
+    sheet.castShadow = false;
+    sheet.receiveShadow = false;
     sheet.name = `paper-${index}`;
     root.add(sheet);
     disposables.push(sheet.geometry);
@@ -105,28 +113,21 @@ export function buildExecutivePresenceWorld(scene: THREE.Scene): ScrollWorldScen
   [-8, 8].forEach((x) => {
     const accent = new THREE.Mesh(accentGeo, accentMat);
     accent.position.set(x, 1.2, -2);
-    accent.castShadow = true;
+    accent.castShadow = false;
     root.add(accent);
   });
   disposables.push(accentGeo, accentMat);
 
   const keyLight = new THREE.DirectionalLight(0xfff8f0, 1.15);
   keyLight.position.set(-6, 14, 8);
-  keyLight.castShadow = true;
-  keyLight.shadow.mapSize.set(1024, 1024);
-  keyLight.shadow.camera.near = 1;
-  keyLight.shadow.camera.far = 60;
-  keyLight.shadow.camera.left = -18;
-  keyLight.shadow.camera.right = 18;
-  keyLight.shadow.camera.top = 18;
-  keyLight.shadow.camera.bottom = -18;
+  keyLight.castShadow = false;
 
   const fillLight = new THREE.HemisphereLight(0xfff5eb, 0xe8dfd4, 0.65);
   const fog = new THREE.FogExp2(0xf5f0e8, 0.0045);
   scene.fog = fog;
   scene.background = new THREE.Color(0xf5f0e8);
 
-  const particleCount = 180;
+  const particleCount = Math.max(24, Math.round(120 * particleScale));
   const positions = new Float32Array(particleCount * 3);
   for (let i = 0; i < particleCount; i += 1) {
     positions[i * 3] = (Math.random() - 0.5) * 30;
@@ -147,7 +148,7 @@ export function buildExecutivePresenceWorld(scene: THREE.Scene): ScrollWorldScen
     })
   );
 
-  const wispCount = 60;
+  const wispCount = Math.max(12, Math.round(36 * particleScale));
   const wispPositions = new Float32Array(wispCount * 3);
   for (let i = 0; i < wispCount; i += 1) {
     wispPositions[i * 3] = (Math.random() - 0.5) * 18;

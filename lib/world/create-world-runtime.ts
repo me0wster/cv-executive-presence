@@ -10,6 +10,10 @@ export interface CreateWorldRuntimeOptions {
   reducedMotion?: boolean;
 }
 
+const SMOOTH_EPS = 0.0008;
+const POINTER_EPS = 0.002;
+const ACTIVITY_MS = 140;
+
 export function createWorldRuntime(
   options: CreateWorldRuntimeOptions
 ): WorldRuntimeHandles {
@@ -23,6 +27,7 @@ export function createWorldRuntime(
   let pointerY = 0;
   let targetPointerX = 0;
   let targetPointerY = 0;
+  let activityUntil = 0;
   let progress: ScrollProgressState = {
     exact: 0,
     smooth: 0,
@@ -38,22 +43,25 @@ export function createWorldRuntime(
 
   const isMobile = () => window.innerWidth < 768;
   const quality = isMobile() ? qualityConfig.mobile : qualityConfig.desktop;
+  const shadowsEnabled = quality.shadows > 0;
 
   const renderer = new THREE.WebGLRenderer({
     canvas: options.canvas,
-    antialias: quality.dpr >= 1.5,
+    antialias: quality.dpr >= 1.25,
     alpha: false,
-    powerPreference: "high-performance",
+    powerPreference: "default",
   });
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.85;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.enabled = shadowsEnabled;
+  if (shadowsEnabled) {
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  }
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(chapters[0].camera.fov, 1, 0.35, 120);
-  const world = buildWorld(scene);
+  const world = buildWorld(scene, { particleScale: quality.particles });
   const cameraRig = createCameraRig({
     camera,
     waypoints: chapters.map((chapter) => chapter.camera),
@@ -66,12 +74,26 @@ export function createWorldRuntime(
   let frame = 0;
   let hidden = false;
 
+  function wake() {
+    activityUntil = performance.now() + ACTIVITY_MS;
+    scheduleFrame();
+  }
+
+  function scheduleFrame() {
+    if (!running || hidden || frame) return;
+    lastTime = 0;
+    frame = requestAnimationFrame(tick);
+  }
+
   function onVisibilityChange() {
     hidden = document.hidden;
-    if (!hidden && running && !frame) {
+    if (hidden) {
+      cancelAnimationFrame(frame);
+      frame = 0;
       lastTime = 0;
-      frame = requestAnimationFrame(tick);
+      return;
     }
+    wake();
   }
 
   document.addEventListener("visibilitychange", onVisibilityChange);
@@ -84,7 +106,9 @@ export function createWorldRuntime(
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    world.keyLight.shadow.mapSize.set(quality.shadows, quality.shadows);
+    if (shadowsEnabled) {
+      world.keyLight.shadow.mapSize.set(quality.shadows, quality.shadows);
+    }
   }
 
   function applyWorldState(
@@ -121,56 +145,76 @@ export function createWorldRuntime(
     positions.needsUpdate = true;
   }
 
-  function tick(now: number) {
-    if (!running || hidden) {
-      frame = 0;
-      return;
-    }
-    const raw = lastTime ? (now - lastTime) / 1000 : 0;
-    const dt = Math.min(raw || 1 / 60, 0.05);
-    lastTime = now;
+  function renderFrame(dt: number) {
     clock += dt;
-    frame += 1;
-
-    targetPointerX = damp(targetPointerX, pointerX, 4.5, dt);
-    targetPointerY = damp(targetPointerY, pointerY, 4.5, dt);
-
     cameraRig.apply(progress.smooth, {
       x: targetPointerX,
       y: targetPointerY,
     });
     applyWorldState();
     updateWisps(dt);
-
     renderer.render(scene, camera);
+  }
 
-    if (frame > 120) {
-      perfAcc += raw;
-      perfCount += 1;
-      if (perfCount >= 40 || perfAcc > 0.9) {
-        const avg = perfAcc / perfCount;
-        perfAcc = 0;
-        perfCount = 0;
-        if (avg > 0.023 && perfScale > 0.55) {
-          perfScale = Math.max(0.55, perfScale * (avg > 0.05 ? 0.64 : 0.85));
-          resize();
-        } else if (avg < 0.0138 && perfScale < 1) {
-          perfScale = Math.min(1, perfScale + 0.08);
-          resize();
+  function tick(now: number) {
+    if (!running || hidden) {
+      frame = 0;
+      return;
+    }
+
+    const raw = lastTime ? (now - lastTime) / 1000 : 0;
+    const dt = Math.min(raw || 1 / 60, 0.05);
+    lastTime = now;
+
+    targetPointerX = damp(targetPointerX, pointerX, 4.5, dt);
+    targetPointerY = damp(targetPointerY, pointerY, 4.5, dt);
+
+    const pointerAnimating =
+      Math.abs(targetPointerX - pointerX) > POINTER_EPS ||
+      Math.abs(targetPointerY - pointerY) > POINTER_EPS;
+    const active = performance.now() < activityUntil || pointerAnimating;
+
+    if (active) {
+      renderFrame(dt);
+
+      if (frame > 120) {
+        perfAcc += raw;
+        perfCount += 1;
+        if (perfCount >= 40 || perfAcc > 0.9) {
+          const avg = perfAcc / perfCount;
+          perfAcc = 0;
+          perfCount = 0;
+          if (avg > 0.023 && perfScale > 0.5) {
+            perfScale = Math.max(0.5, perfScale * (avg > 0.05 ? 0.64 : 0.85));
+            resize();
+          } else if (avg < 0.0138 && perfScale < 1) {
+            perfScale = Math.min(1, perfScale + 0.08);
+            resize();
+          }
         }
       }
     }
 
-    requestAnimationFrame(tick);
+    if (active || pointerAnimating) {
+      frame = requestAnimationFrame(tick);
+    } else {
+      frame = 0;
+    }
   }
 
   resize();
-  requestAnimationFrame(tick);
+  wake();
 
   return {
     resize,
     update(nextProgress: ScrollProgressState) {
+      const smoothChanged =
+        Math.abs(nextProgress.smooth - progress.smooth) > SMOOTH_EPS;
+      const indexChanged =
+        nextProgress.smoothIndex !== progress.smoothIndex ||
+        nextProgress.smoothNext !== progress.smoothNext;
       progress = nextProgress;
+      if (smoothChanged || indexChanged) wake();
     },
     render() {
       cameraRig.apply(progress.smooth, {
@@ -184,14 +228,24 @@ export function createWorldRuntime(
       reducedMotion = value;
       if (reducedMotion) {
         running = false;
+        cancelAnimationFrame(frame);
+        frame = 0;
       }
     },
     setPointer(x: number, y: number) {
-      pointerX = x;
-      pointerY = y;
+      if (
+        Math.abs(x - pointerX) > POINTER_EPS ||
+        Math.abs(y - pointerY) > POINTER_EPS
+      ) {
+        pointerX = x;
+        pointerY = y;
+        wake();
+      }
     },
     dispose() {
       running = false;
+      cancelAnimationFrame(frame);
+      frame = 0;
       document.removeEventListener("visibilitychange", onVisibilityChange);
       world.dispose();
       cameraRig.dispose();

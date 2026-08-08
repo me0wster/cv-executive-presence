@@ -33,8 +33,10 @@ const initialProgress: ScrollProgressState = {
 
 export function ScrollWorldExperience() {
   const pageRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] =
-    useState<ScrollProgressState>(initialProgress);
+  const worldProgressRef = useRef<
+    ((progress: ScrollProgressState) => void) | null
+  >(null);
+  const latestProgressRef = useRef<ScrollProgressState>(initialProgress);
   const [activeChapter, setActiveChapter] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -73,7 +75,10 @@ export function ScrollWorldExperience() {
     const conductor = createScrollConductor({
       sections,
       reducedMotion,
-      onUpdate: (state) => setProgress(state),
+      onUpdate: (state) => {
+        latestProgressRef.current = state;
+        worldProgressRef.current?.(state);
+      },
       onChapterChange: (index) => setActiveChapter(index),
     });
 
@@ -98,7 +103,8 @@ export function ScrollWorldExperience() {
       <div id="world-grain" aria-hidden="true" />
 
       <ScrollWorldCanvas
-        progress={progress}
+        progressSinkRef={worldProgressRef}
+        latestProgressRef={latestProgressRef}
         reducedMotion={reducedMotion}
         enabled={!reducedMotion}
       />
