@@ -8,6 +8,7 @@ import type { ScrollProgressState } from "@/lib/world/types";
 import { WorldChapterRail } from "@/components/world/WorldChapterRail";
 import { WorldChapterSections } from "@/components/world/WorldChapterSections";
 import { WorldNav } from "@/components/world/WorldNav";
+import { WorldContentSurface } from "@/components/world/ui/WorldContentSurface";
 
 const ScrollWorldCanvas = dynamic(
   () =>
@@ -45,8 +46,21 @@ export function ScrollWorldExperience() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.classList.add("scroll-world-active");
-    return () => document.documentElement.classList.remove("scroll-world-active");
+    const root = document.documentElement;
+    root.classList.add("scroll-world-active");
+    root.classList.remove("dark");
+
+    const observer = new MutationObserver(() => {
+      if (root.classList.contains("dark")) {
+        root.classList.remove("dark");
+      }
+    });
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+
+    return () => {
+      observer.disconnect();
+      root.classList.remove("scroll-world-active");
+    };
   }, []);
 
   useEffect(() => {
@@ -101,9 +115,11 @@ export function ScrollWorldExperience() {
       </div>
 
       <footer className="world-footer relative z-10 px-[var(--world-pad)] py-8">
-        <p className="text-xs tracking-[0.18em] text-[var(--world-muted)]">
-          © {new Date().getFullYear()} Timothy Chin — {worldConfig.footerLabel}
-        </p>
+        <WorldContentSurface className="inline-block rounded-sm px-6 py-4">
+          <p className="text-xs tracking-[0.18em] text-[var(--world-muted)]">
+            © {new Date().getFullYear()} Timothy Chin — {worldConfig.footerLabel}
+          </p>
+        </WorldContentSurface>
       </footer>
     </div>
   );

@@ -49,11 +49,12 @@ export function buildExecutivePresenceWorld(scene: THREE.Scene): ScrollWorldScen
   });
 
   const frames: Array<{ x: number; y: number; z: number; w: number; h: number; rotY: number }> = [
-    { x: -6, y: 3.5, z: -4, w: 4.2, h: 5.8, rotY: 0.18 },
-    { x: 5.5, y: 2.8, z: -6, w: 3.6, h: 4.8, rotY: -0.22 },
-    { x: 0.5, y: 4.2, z: -10, w: 5.5, h: 3.2, rotY: 0.05 },
-    { x: -3.5, y: 1.6, z: 2, w: 2.8, h: 3.6, rotY: 0.35 },
-    { x: 4, y: 1.2, z: 1, w: 3.2, h: 2.4, rotY: -0.15 },
+    { x: -7, y: 3.8, z: -3, w: 5.2, h: 6.8, rotY: 0.22 },
+    { x: 6.5, y: 3.2, z: -5, w: 4.4, h: 5.6, rotY: -0.28 },
+    { x: 1, y: 4.8, z: -9, w: 6.5, h: 3.8, rotY: 0.08 },
+    { x: -4, y: 2.2, z: 3, w: 3.4, h: 4.2, rotY: 0.4 },
+    { x: 5, y: 1.8, z: 2, w: 3.8, h: 2.8, rotY: -0.18 },
+    { x: -2, y: 5.5, z: -14, w: 4.8, h: 3.2, rotY: -0.05 },
   ];
 
   const disposables: Array<THREE.BufferGeometry | THREE.Material> = [

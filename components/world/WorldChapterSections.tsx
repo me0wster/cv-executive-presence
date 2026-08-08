@@ -9,6 +9,8 @@ import { getFeaturedProjects } from "@/lib/data/projects";
 import { worldConfig } from "@/lib/world/world-config";
 import type { WorldChapter } from "@/lib/world/types";
 import { DropCap } from "@/components/ui/drop-cap";
+import { EditorialChip } from "@/components/world/ui/EditorialChip";
+import { WorldContentSurface } from "@/components/world/ui/WorldContentSurface";
 import { cn } from "@/lib/utils";
 
 interface WorldChapterSectionsProps {
@@ -69,17 +71,17 @@ export function WorldChapterSections({
         id="hero"
         data-cam
         style={{ minHeight: `${hero.scrollWeight * 100}vh` }}
-        className="world-sec relative flex flex-col justify-center overflow-hidden px-[var(--world-pad)]"
+        className="world-sec relative flex flex-col justify-between overflow-hidden px-[var(--world-pad)]"
       >
         <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-primary/5 to-transparent" />
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl pt-[calc(var(--world-nav-h)+2rem)]">
+        <div className="relative z-10 mx-auto w-full max-w-7xl flex-1 pt-[calc(var(--world-nav-h)+2rem)]">
           <p className="mb-12 text-sm tracking-wide text-muted-foreground">
             {personInfo.location}
           </p>
 
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="order-2 lg:order-1">
+            <WorldContentSurface className="order-2 rounded-sm p-8 sm:p-10 lg:order-1">
               <h1 className="mb-8 font-serif text-5xl font-normal tracking-tight text-foreground sm:text-6xl lg:text-7xl xl:text-8xl">
                 <span>{personInfo.firstName.toUpperCase()}</span>
                 {personInfo.monogram ? (
@@ -131,7 +133,7 @@ export function WorldChapterSections({
                   />
                 </svg>
               </a>
-            </div>
+            </WorldContentSurface>
 
             <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
               <div className="relative">
@@ -167,6 +169,26 @@ export function WorldChapterSections({
             </div>
           </div>
         </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-7xl pb-10">
+          <div className="mb-4 flex items-center justify-end gap-3">
+            <span className="text-[9px] uppercase tracking-[0.3em] text-[var(--world-muted)]">
+              Scroll to explore
+            </span>
+            <span className="world-scroll-cue" aria-hidden="true" />
+          </div>
+          <div className="world-chapters-grid border-t border-[var(--world-line-soft)] pt-5">
+            {chapters.slice(1).map((chapter, index) => (
+              <EditorialChip
+                key={chapter.id}
+                num={String(index + 1).padStart(2, "0")}
+                label={chapter.label}
+                title={chapter.copy.title}
+                href={`#${chapter.id}`}
+              />
+            ))}
+          </div>
+        </div>
       </section>
 
       <section
@@ -175,6 +197,7 @@ export function WorldChapterSections({
         style={{ minHeight: `${about.scrollWeight * 100}vh` }}
         className="world-sec section-container relative z-10"
       >
+        <WorldContentSurface className="rounded-sm p-8 sm:p-12">
         <div className="mb-12">
           <p className="section-subheading">{about.copy.eyebrow}</p>
           <h2 className="section-heading">{about.copy.title}</h2>
@@ -187,10 +210,10 @@ export function WorldChapterSections({
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="space-y-6">
-            <p className="text-lg leading-relaxed text-muted-foreground">
+            <p className="text-lg leading-relaxed text-foreground/80">
               {aboutContent.subheadline}
             </p>
-            <DropCap className="leading-relaxed text-foreground/90">
+            <DropCap className="leading-relaxed text-foreground">
               {aboutContent.paragraphs[0]}
             </DropCap>
           </div>
@@ -202,6 +225,7 @@ export function WorldChapterSections({
             ))}
           </div>
         </div>
+        </WorldContentSurface>
       </section>
 
       <section
@@ -210,6 +234,7 @@ export function WorldChapterSections({
         style={{ minHeight: `${experience.scrollWeight * 100}vh` }}
         className="world-sec section-container relative z-10"
       >
+        <WorldContentSurface className="rounded-sm p-8 sm:p-12">
         <div className="mb-12">
           <p className="section-subheading">{experience.copy.eyebrow}</p>
           <h2 className="section-heading">{experience.copy.title}</h2>
@@ -219,9 +244,9 @@ export function WorldChapterSections({
           {experienceEntries.map((entry) => (
             <article
               key={`${entry.company}-${entry.startDate}`}
-              className="relative border-l-2 border-border pl-8 transition-colors duration-300 hover:border-primary"
+              className="relative border-l-2 border-border pl-8 transition-colors duration-300 hover:border-accent-cta"
             >
-              <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full border-2 border-primary bg-background" />
+              <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full border-2 border-accent-cta bg-[var(--world-ink)]" />
 
               <div className="mb-4">
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
@@ -230,21 +255,21 @@ export function WorldChapterSections({
                     {entry.startDate} - {entry.endDate || "Present"}
                   </span>
                 </div>
-                <p className="mt-1 text-lg font-medium text-primary">{entry.company}</p>
+                <p className="mt-1 text-lg font-medium text-accent-cta">{entry.company}</p>
                 {entry.location ? (
                   <p className="text-sm text-muted-foreground">{entry.location}</p>
                 ) : null}
               </div>
 
-              <p className="mb-4 text-muted-foreground">{entry.description}</p>
+              <p className="mb-4 text-foreground/85">{entry.description}</p>
 
               <ul className="mb-4 space-y-2">
                 {entry.accomplishments.map((accomplishment) => (
                   <li
                     key={accomplishment.slice(0, 32)}
-                    className="flex items-start gap-2 text-foreground/80"
+                    className="flex items-start gap-2 text-foreground/90"
                   >
-                    <span className="mt-1.5 text-primary">•</span>
+                    <span className="mt-1.5 text-accent-cta">•</span>
                     <span>{accomplishment}</span>
                   </li>
                 ))}
@@ -265,6 +290,7 @@ export function WorldChapterSections({
             </article>
           ))}
         </div>
+        </WorldContentSurface>
       </section>
 
       <section
@@ -273,6 +299,7 @@ export function WorldChapterSections({
         style={{ minHeight: `${skills.scrollWeight * 100}vh` }}
         className="world-sec section-container relative z-10"
       >
+        <WorldContentSurface className="rounded-sm p-8 sm:p-12">
         <div className="mb-12">
           <p className="section-subheading">{skills.copy.eyebrow}</p>
           <h2 className="section-heading">{skills.copy.title}</h2>
@@ -302,6 +329,7 @@ export function WorldChapterSections({
               </div>
             ))}
         </div>
+        </WorldContentSurface>
       </section>
 
       <section
@@ -310,6 +338,7 @@ export function WorldChapterSections({
         style={{ minHeight: `${projects.scrollWeight * 100}vh` }}
         className="world-sec section-container relative z-10"
       >
+        <WorldContentSurface className="rounded-sm p-8 sm:p-12">
         <div className="mb-12">
           <p className="section-subheading">{projects.copy.eyebrow}</p>
           <h2 className="section-heading">{projects.copy.title}</h2>
@@ -360,6 +389,7 @@ export function WorldChapterSections({
             </article>
           ))}
         </div>
+        </WorldContentSurface>
       </section>
 
       <section
@@ -368,13 +398,14 @@ export function WorldChapterSections({
         style={{ minHeight: `${contact.scrollWeight * 100}vh` }}
         className="world-sec section-container relative z-10"
       >
+        <WorldContentSurface className="rounded-sm p-8 sm:p-12">
         <div className="mb-12 text-center">
           <p className="section-subheading">{contact.copy.eyebrow}</p>
           <h2 className="section-heading">{contact.copy.title}</h2>
         </div>
 
         <div className="mx-auto max-w-3xl">
-          <p className="mb-12 text-center text-xl leading-relaxed text-muted-foreground sm:text-2xl">
+          <p className="mb-12 text-center text-xl leading-relaxed text-foreground/80 sm:text-2xl">
             {contact.copy.body}
           </p>
 
@@ -387,7 +418,7 @@ export function WorldChapterSections({
                   href={href}
                   target={href.startsWith("mailto") ? undefined : "_blank"}
                   rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                  className="group flex h-full flex-col items-center justify-center rounded-lg border border-border/50 bg-background p-6 transition-all duration-300 hover:border-[var(--color-accent-cta)]/50 hover:shadow-md"
+                  className="group flex h-full flex-col items-center justify-center rounded-lg border border-border/50 bg-background/80 p-6 transition-all duration-300 hover:border-[var(--color-accent-cta)]/50 hover:shadow-md"
                 >
                   <span className="mb-4 font-serif text-lg text-foreground">{link.label}</span>
                   <span className="text-sm text-muted-foreground transition-colors group-hover:text-foreground">
@@ -398,6 +429,7 @@ export function WorldChapterSections({
             })}
           </div>
         </div>
+        </WorldContentSurface>
       </section>
     </>
   );
